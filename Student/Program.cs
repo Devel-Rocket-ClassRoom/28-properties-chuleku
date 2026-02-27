@@ -1,9 +1,34 @@
 using System;
-
+Student kim = new Student("±èÃ¶¼ö",85,90,95);
+Console.WriteLine($"±¹¾î: {kim.KoreanScore}, ¿µ¾î: {kim.EnglishScore}, ¼öÇĞ: {kim.MathScore}");
+Console.WriteLine($"ÃÑÁ¡: {kim.TotalScore}");
+Console.WriteLine($"Æò±Õ: {kim.Average:F2}");
+Console.WriteLine($"ÇĞÁ¡: {kim.Grade}");
+Console.WriteLine();
+Student Lee = new Student("ÀÌ¿µÈñ", 75, 80, 70);
+Console.WriteLine($"±¹¾î: {Lee.KoreanScore}, ¿µ¾î: {Lee.EnglishScore}, ¼öÇĞ: {Lee.MathScore}");
+Console.WriteLine($"ÃÑÁ¡: {Lee.TotalScore}");
+Console.WriteLine($"Æò±Õ: {Lee.Average:F2}");
+Console.WriteLine($"ÇĞÁ¡: {Lee.Grade}");
+Console.WriteLine();
+Student park = new Student("ÀÌ¿µÈñ", 110, 120, -10);
+Console.WriteLine($"±¹¾î: {park.KoreanScore}, ¿µ¾î: {park.EnglishScore}, ¼öÇĞ: {park.MathScore}");
+Console.WriteLine($"ÃÑÁ¡: {park.TotalScore}");
+Console.WriteLine($"Æò±Õ: {park.Average:F2}");
+Console.WriteLine($"ÇĞÁ¡: {park.Grade}");
 class Student
 {
-    private readonly string Name;
-    public int _KoreanScore;
+    public string Name { get; }
+    private int _KoreanScore;
+
+    public Student(string name,int korea,int eng,int Math)
+    {
+        KoreanScore = korea;
+        EnglishScore = eng;
+        MathScore = Math;
+        Name = name;
+        Console.WriteLine($"=== ¼ºÀûÇ¥: {Name} ===");
+    }
     public int KoreanScore
     {
         get { return _KoreanScore; }
@@ -23,7 +48,7 @@ class Student
             }
         }
     }
-    public int _EnglishScore;
+    private int _EnglishScore;
     public int EnglishScore
     {
         get { return _EnglishScore; }
@@ -43,7 +68,7 @@ class Student
             }
         }
     }
-    public int _MathScore;
+    private int _MathScore;
     public int MathScore
     {
         get { return _MathScore; }
@@ -66,20 +91,38 @@ class Student
     public int _TotalScore;
     public int TotalScore
     {
-        get { return _TotalScore; }
-        set
-        {
-            _TotalScore=_KoreanScore+_EnglishScore+_MathScore;
-        }
-    }
-    public int _Average;
-    public int Average
-    {
-        get { return _Average; }
-        set
-        {
-            
-        }
-    }
+        get { return (KoreanScore + EnglishScore + MathScore); }
 
+    }
+    public double _Average;
+    public double Average
+    {
+        get { return TotalScore / 3.0; }
+    }
+    public string Grade
+    {
+        get
+        {
+            if(Average>=90)
+            {
+                return "A";
+            }
+            else if(Average>=80)
+            {
+                return "B";
+            }
+            else if(Average>=70)
+            {
+                return "C";
+            }
+            else if(Average>=60)
+            {
+                return "D";
+            }
+            else
+            {
+                return "F";
+            }
+        }
+    }
 }
